@@ -1,0 +1,280 @@
+/* Global Styles */
+:root {
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-gradient-light: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    --text-color: #fff;
+    --text-color-light: #444;
+    --container-bg: rgba(255, 255, 255, 0.15);
+    --container-bg-light: rgba(255, 255, 255, 0.6);
+    --cell-bg: rgba(255, 255, 255, 0.1);
+    --cell-bg-light: rgba(255, 255, 255, 0.5);
+    --btn-bg: #ff6b6b;
+    --btn-hover: #ff5252;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-gradient);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+body.light-mode {
+    background: var(--bg-gradient-light);
+    color: var(--text-color-light);
+}
+
+.container {
+    background: var(--container-bg);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    /* Reduced padding */
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    max-width: 400px;
+    /* Smaller container */
+    width: 90%;
+    transition: background 0.5s ease;
+}
+
+body.light-mode .container {
+    background: var(--container-bg-light);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* GitHub Link */
+.github-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: inherit;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.github-link:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Theme Switcher Styles */
+.theme-switch-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 24px;
+    /* Smaller switch */
+    position: relative;
+    width: 46px;
+    /* Smaller switch */
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 3px;
+    content: "";
+    height: 18px;
+    /* Smaller knob */
+    left: 3px;
+    position: absolute;
+    transition: .4s;
+    width: 18px;
+    /* Smaller knob */
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #ff6b6b;
+}
+
+input:checked+.slider:before {
+    transform: translateX(22px);
+}
+
+header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.5rem;
+    /* Smaller font */
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 5px;
+    margin-top: 20px;
+    /* Space for top icons */
+}
+
+header p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 15px;
+}
+
+/* Status Display */
+.status-display {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+#currentPlayer {
+    color: #ffd700;
+    font-weight: bold;
+}
+
+body.light-mode #currentPlayer {
+    color: #ff6b6b;
+}
+
+/* Game Board */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 8px;
+    /* Reduced gap */
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.cell {
+    width: 80px;
+    /* Smaller cells */
+    height: 80px;
+    background: var(--cell-bg);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 3rem;
+    /* Smaller font */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .cell {
+    background: var(--cell-bg-light);
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+body.light-mode .cell:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* X and O Colors */
+.cell.x {
+    color: #ff6b6b;
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+.cell.o {
+    color: #4ecdc4;
+    text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+}
+
+body.light-mode .cell.o {
+    color: #45b7aa;
+}
+
+/* Controls */
+.btn {
+    padding: 10px 25px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background-color: var(--btn-bg);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+.btn:hover {
+    background-color: var(--btn-hover);
+    transform: scale(1.05);
+}
+
+/* Winning Message Modal */
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 3rem;
+    font-family: 'Fredoka One', cursive;
+    z-index: 100;
+}
+
+.winning-message button {
+    font-size: 1.5rem;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.winning-message button:hover {
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.winning-message.show {
+    display: flex;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
